@@ -60,14 +60,34 @@ developing your own process.
 
 ## Your Notes Here
 
-- Add a new toy when the toy form is submitted
+- - Add a new toy when the toy form is submitted
 
-  - How I debugged:
 
-- Update the number of likes for a toy
+  - How I debugged:	  - How I debugged:
 
-  - How I debugged:
 
-- Donate a toy to Goodwill (and delete it from our database)
+  - Try submitting a new toy and check server status codes on networking tab within chrome dev tools. Got a 500 server error .
+  - Checl server logs and found mispelled `Toys.create` instead of `Toy.create` on toys_controller
+  - SOLVED.
 
-  - How I debugged:
+- Update the number of likes for a toy	- Update the number of likes for a toy
+
+
+  - How I debugged:	  - How I debugged:
+
+
+  - Try clicking like button.
+  - Check chrome dev tools console and found unexpected end of JSON input -- hint to check on render from API
+  - client expects json response but none provided from server after updating toy
+  - return JSON response after updating a toy's likes
+  - SOLVED.
+
+- Donate a toy to Goodwill (and delete it from our database)	- Donate a toy to Goodwill (and delete it from our database)
+
+
+  - How I debugged:	  - How I debugged:
+
+  - Try donating toy and check browser console and network response on client found 404 not found error. Hint - check server logs
+   - On server log `ActionController::RoutingError (No route matches [DELETE] "/toys/1"):` error hence need to define a delete route and action on routes file
+    - Update route file routes to include `:destroy`
+    - SOLVED.
